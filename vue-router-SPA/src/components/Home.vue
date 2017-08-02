@@ -1,6 +1,5 @@
 <template lang="pug">
   #app.container
-    h1 로그인
       .field
       p.control
         button.button.is-primary 이메일로 로그인하기

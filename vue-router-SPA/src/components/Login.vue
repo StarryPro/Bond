@@ -1,6 +1,5 @@
 <template lang="pug">
   #app.container
-    h1 이메일로 로그인
     .field
       p.control.has-icons-left.has-icons-right
         input.input(type='email', placeholder='이메일을 입력해주세요:)')
