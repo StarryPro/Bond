@@ -1,41 +1,35 @@
 <template lang="pug">
   #app.container
-    .field
-    label.label 닉네임
-    .control
-        input.input(type='text', placeholder='닉네임을 설정해주세요.')
-    p.help.is-success 해당 닉네임은 사용가능합니다.
-    .field
-    label.label 이름
-    .control.has-icons-left.has-icons-right
-        input.input.is-success(type='text', placeholder='이름을 적어주세요.', value='bulma')
-        span.icon.is-small.is-left
-        i.fa.fa-user
-        span.icon.is-small.is-right
-        i.fa.fa-check
-    .field
-    label.label Email
-    .control.has-icons-left.has-icons-right
-        input.input.is-danger(type='text', placeholder='이메일을 적어주세요.', value='hello@')
-        span.icon.is-small.is-left
-        i.fa.fa-envelope
-        span.icon.is-small.is-right
-        i.fa.fa-warning
-    p.help.is-danger 해당 이메일은 사용가능하지 않습니다.
-    .control
-        label.checkbox
-        input(type='checkbox')
-        |        전체동의(선택 항목 포함)
-        input(type='checkbox')
-        |        이용약관(필수)
-        a(href='#') 보기
-        input(type='checkbox')
-        |        개인정보 수집 및 이용에 대한 안내(필수)
-        a(href='#') 보기
-        input(type='checkbox')
-        |        
-        a(href='#') 이벤트, 서비스 안내 수신(선택)
-
+    h1.is-size-4.has-text-centered.title 이메일로 로그인
+    .box.column.is-half.is-offset-one-quarter
+      .field.column.is-half.is-offset-one-quarter
+        label.label
+        .control
+          input.input(type='text', placeholder='닉네임을 설정해주세요.')
+        p.help.is-dark 해당 닉네임은 사용가능합니다.
+      .field.column.is-half.is-offset-one-quarter
+        label.label 
+        .control.has-icons-left.has-icons-right
+          input.input.is-primary(type='text', placeholder='이름을 입력해주세요.')
+          span.icon.is-small.is-left
+            i.fa.fa-user
+          span.icon.is-small.is-right
+            i.fa.fa-check
+      .field.column.is-half.is-offset-one-quarter
+        label.label 
+        .control.has-icons-left.has-icons-right
+          input.input.is-primary(type='text', placeholder='사용하실 이메일을 입력해주세요.', value='hus6178@')
+          span.icon.is-small.is-left
+            i.fa.fa-envelope
+          span.icon.is-small.is-right
+            i.fa.fa-warning
+      .field.is-grouped.is-grouped-centered
+        .control
+          router-link(to='#/Login', active-class='current-page')
+            button.button.is-primary 가입하기
+        .control
+          router-link(to='/#', active-class='current-page')
+            button.button.is-link.is-right Cancel
 </template>
 
 <script>
@@ -45,9 +39,12 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  html
-    font-size: 100%
-    background: #fff
-  body
-    margin: 0
+ .title
+  margin: 20px 0
+ .field
+  margin-top: 0
+  margin-bottom: 0
+  padding-bottom: 0
+  .is-grouped
+  margin-top: 20px
 </style>

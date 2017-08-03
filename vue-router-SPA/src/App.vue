@@ -1,6 +1,7 @@
 <template lang="pug">
   #app.container
-    h1 한번해보자
+    .is-size-1.has-text-centered Bond
+    hr
     router-view
     app-nav
 </template>
@@ -21,5 +22,14 @@ export default {
 
 <style lang="sass">
 @import "~bulma"
+html
+    font-size: 100%
+    background: #eee
+body
+    margin: 0
+hr
+    margin: 0
+    height: 2px
+    background: #4a4a4a
 
 </style>

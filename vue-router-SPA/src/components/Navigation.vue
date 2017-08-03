@@ -2,11 +2,13 @@
 nav.gnb
   ul
     li
-      router-link(to='/', exact='', active-class='current-page') Home
+      router-link(to='/', exact='', active-class='current-page') home
     li
-      router-link(to='/Login', active-class='current-page') Login
+      router-link(to='/Login', active-class='current-page') login
     li
-      router-link(to='/SignUp', active-class='current-page') SignUp
+      router-link(to='/SignUp', active-class='current-page') signup
+    li
+      router-link(to='/Password', active-class='current-page') password
 </template>
 
 <script>
@@ -16,9 +18,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  html
-    font-size: 100%
-    background: #fff
-  body
-    margin: 0
+
 </style>
