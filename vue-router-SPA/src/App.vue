@@ -1,9 +1,17 @@
 <template lang="pug">
-  #app.container
-    .title.has-text-centered
-      img(src="./assets/logo-01.svg")
-    router-view
-    app-nav
+  #app
+    .container
+      .title.has-text-centered
+        img(src="./assets/logo-01.svg")
+      router-view
+      app-nav
+    footer.footer.is-hidden-mobile
+      .content.has-text-centered
+        p
+          strong 본드
+          |  by 
+          a(href='http://school.fastcampus.co.kr/') 패스트 캠퍼스.
+          |  웹 프론트엔드 스쿨 
 </template>
 
 <script>
@@ -23,12 +31,21 @@ export default {
 <style lang="sass">
 @import "~bulma"
 @import "~style"
-html
+html, body
     font-size: 100%
+    margin: 0
+    padding: 0
+    height: 100%
     background: url("https://unsplash.it/900/420?image=1068") no-repeat
     background-size: cover
-body
-    margin: 0
+#app 
+    position: relative
+    min-height: 100%
 .title
-  margin-top: 20px
+    margin-top: 20px
+.footer
+    position: absolute
+    bottom: 0
+    width: 100%
+    background-color: hsla(0, 0%, 100%, .3)
 </style>
