@@ -1,7 +1,7 @@
 <template lang="pug">
   #app.container
-    .is-size-1.has-text-centered Bond
-    hr
+    .title.has-text-centered
+      img(src="./assets/logo-01.svg")
     router-view
     app-nav
 </template>
@@ -22,14 +22,13 @@ export default {
 
 <style lang="sass">
 @import "~bulma"
+@import "~style"
 html
     font-size: 100%
-    background: #eee
+    background: url("https://unsplash.it/900/420?image=1068") no-repeat
+    background-size: cover
 body
     margin: 0
-hr
-    margin: 0
-    height: 2px
-    background: #4a4a4a
-
+.title
+  margin-top: 20px
 </style>

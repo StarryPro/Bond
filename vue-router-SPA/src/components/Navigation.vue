@@ -2,13 +2,13 @@
 nav.gnb
   ul
     li
-      router-link(to='/', exact='', active-class='current-page') home
+      router-link(to='/', exact='', active-class='current-page')
     li
-      router-link(to='/Login', active-class='current-page') login
+      router-link(to='/Login', active-class='current-page') 
     li
-      router-link(to='/SignUp', active-class='current-page') signup
+      router-link(to='/SignUp', active-class='current-page') 
     li
-      router-link(to='/Password', active-class='current-page') password
+      router-link(to='/Password', active-class='current-page') 
 </template>
 
 <script>
