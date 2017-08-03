@@ -1,6 +1,6 @@
 <template lang="pug">
   #app.container
-    h1.is-size-4.has-text-centered.title 이메일로 로그인
+    h1.is-size-4.has-text-centered.title 회원가입
     .box.column.is-half.is-offset-one-quarter
       .field.column.is-half.is-offset-one-quarter
         label.label
