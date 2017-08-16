@@ -1,5 +1,6 @@
 <template lang="pug">
 div
+  //- MainHeader
   .nav-bg
     nav.navbar.container
       .navbar-brand
@@ -16,7 +17,8 @@ div
             input.input(
               type='text'
               placeholder='그룹이나 게시글을 검색해보세요' 
-              v-model = "search"
+              @input="inputSearch"
+              :value="search"
               )
             span.span.icon.is-small.is-left
               i.fa.fa-search
@@ -37,7 +39,7 @@ div
               router-link.navbar-item(to="/MyGroupFeed")
                 | 새 글 보기
               hr.dropdownhr
-              a.navbar-item(@click="console")
+              a.navbar-item
                 | 로그 아웃
     hr.navhr.is-hidden-mobile
     my-setting(close_message="close lightbox" ref='my_setting')
@@ -91,12 +93,14 @@ div
 </template>
 
 <script>
+// import MainHeader from '../Header-Footer/MainHeader';
 import MySetting from '../Main/MySetting';
 import MainFooter from '../Header-Footer/MainFooter';
 export default {
   name: 'app',
   components: {
     MySetting,
+    // MainHeader,
     MainFooter,
   },
   data(){
@@ -105,51 +109,31 @@ export default {
       group_list: []
     }
   },
-  computed: {
-    filtered_group_list(){
-      let search = this.search.trim();
-      //사용자가 정보를 입력한 경우
-      if(search){
-        this.group_list = group_list.filter(search => Object.values(search));
-      }
-    },
-  },
   methods: {
     openMySetting() {
       this.$refs.my_setting.visible = true;
     },
-    submit(){
-      //VueResource === this.$http
-      this.$http.post('', this.group_list)
-                .then(function(response){
-                  console.log(response);
-                })
-                .catch(function(error){
-                  console.error(error.message);
-                })
+    inputSearch(event){
+      this.search = event.target.value.trim();
     },
     fetch(){
-      this.$http.get(''+'group/')
+      let search = this.search.trim();
+      this.$http.get(''+'group/?search='+`${search}`)
                 .then(response => {
                   this.group_list = response.data.results;
-                  console.log(this.group_list);
+                  console.log(this.group_list)
                 })
                 .catch(error => console.error(error.message))
     },
   }
 }
 
-
 </script>
 
 <style lang="sass" scoped>
 @import "~bulma"
 @import "~style"
-// html
-//   font-size: 100%
-//   background: #fff
-// body
-//   margin: 0
+
 body
   background: #eee
 .navbar-burger.burger
