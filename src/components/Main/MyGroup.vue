@@ -5,7 +5,7 @@
         p Mygroup: {{ count }}
         .columns.grouplist-wrapper
           //- 그룹 정보 영역
-          .column.is-3(v-for="data in datalist")
+          .column.is-3(v-for="group in group_list")
             router-link(to="/JointGroup")
               .card
                 .card-image
@@ -14,7 +14,7 @@
                 .card-content
                   .media
                     .media-content.has-text-centered
-                      p.title.is-4 {{ data.name }}
+                      p.title.is-4 {{ group.name }}
                       //- p.title.is-4 그룹 이름
 
               
@@ -73,11 +73,11 @@ export default {
     return {
       uploadGroupImg: '',
       count: '',
-      datalist: [],
+      group_list: [],
       group: {
-        name: '',
-        description: '',
-        proflie_img: null
+        // name: '',
+        // description: '',
+        // proflie_img: null
       }
     };
   },
@@ -89,21 +89,20 @@ export default {
     getMyGroupList(){
       let user_token = window.localStorage.getItem('token');
       
-      this.$http.get('http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/my-group/', this.group, {
-      // this.$http.get('https://bond-43bc3.firebaseio.com/group.json', this.group, {
-        headers: { 'Authorization' : `Token ${user_token}` }
-      })
-      .then(group => {
-        const datalist = Object.values(group);
-        this.datalist = datalist;
-       console.log(group);
+      this.$http.get('http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/my-group/', 
+        {headers: { 'Authorization' : `Token ${user_token}` }}
+      )
+      .then(response => {
+        // const datalist = Object.values(response);
+        // this.datalist = datalist;
+        this.group_list = response.data.results;
+       console.log(response);
       })
       .catch(error => {
         console.log(error.message);
       })
     }
-  }
-}
+}}
 </script>
 
 <style lang="sass" scoped>
