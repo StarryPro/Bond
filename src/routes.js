@@ -33,7 +33,7 @@ export const routes = [
 
     // Group
     // {path: '/JointGroup', component: JointGroup},
-  { path: '/JointGroup', component: JointGroup, children: [
+    { path: '/JointGroup', component: JointGroup, children: [
       { path: '', component: JointGroupFeed },
       { path: '/JointGroup/GroupMemberList', component: GroupMemberList }
   ] },
@@ -54,20 +54,14 @@ export const routes = [
     }
   },
     { path: '/FindPassword', component: FindPassword },
-  {
-    path: '/SignInPage',
-    component: SignInPage
-  },
+    { path: '/SignInPage',component: SignInPage },
     { path: '/SignUpPage', component: SignUpPage },
 
     // Main
     { path: '/MainPage', component: MainPage },
     { path: '/MyGroup', component: MyGroup },
     { path: '/SearchResult', component: SearchResult },
-    // {path: '/InvitationModal', component: InvitationModal},
     { path: '/MyMenu', component: MobileMyMenu },
-
-    // Set
 
     // *
     { path: '*', component: Home }

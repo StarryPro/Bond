@@ -2,7 +2,10 @@
       div.nav-bg
         nav.navbar.container
           .navbar-brand
-            router-link.navbar-item(to="MainPage")
+            router-link.navbar-item(
+              to="/MainPage" 
+              exact='' 
+              active-class='current-page')
               picture
                 img.is-hidden-mobile(src='../../assets/logo-01.svg', alt='큰본드', width=112, height=28)
                 img.is-hidden-desktop.is-hidden-tablet(src='../../assets/logo-02.svg', alt='작은본드')
@@ -52,11 +55,10 @@ export default {
     MySetting,
     MobileMyMenu
   },
-
   data(){
     return{
       search: '',
-      group_list:[],
+      group_list: [],
     }
   },
   methods: {
@@ -89,7 +91,7 @@ export default {
                 .then(response => {
                   this.group_list = response.data.results;
                   console.log(this.group_list)
-                  this.$router.push('/SearchResult')
+                  this.$router.push('/SearchResult/group?search='+`${search}`)
                 })
                 .catch(error => console.error(error.message))
     },

@@ -1,7 +1,6 @@
 <template lang="pug">
   div
     main-header
-    //- router-link
     my-group
     main-footer
 </template>
@@ -16,9 +15,7 @@ export default {
     MainHeader,
     MyGroup,
     MainFooter,
-    
   },
-  
 }
 </script>
 
