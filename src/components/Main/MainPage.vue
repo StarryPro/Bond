@@ -24,7 +24,7 @@ export default {
 @import "~style"
 
 body
-  background: #eee
+  // background: #eee
 
 </style>
 
