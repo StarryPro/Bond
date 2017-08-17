@@ -63,7 +63,7 @@ export const routes = [
     // Main
     { path: '/MainPage', component: MainPage },
     { path: '/MyGroup', component: MyGroup },
-    { path: '/SearchResult/group/', component: SearchResult },
+    { path: '/SearchResult', component: SearchResult },
     // {path: '/InvitationModal', component: InvitationModal},
     { path: '/MyMenu', component: MobileMyMenu },
 

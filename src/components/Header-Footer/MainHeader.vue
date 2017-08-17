@@ -57,7 +57,6 @@ export default {
     return{
       search: '',
       group_list: [],
-      searchkeyword:'',
     }
   },
   methods: {
@@ -103,7 +102,7 @@ export default {
                   console.log('response:',response);
                   console.log('results:',this.group_list);
                   console.log('search:',search);
-                  this.$router.push({ path: '/SearchResult/group/', query: { search: `${search}` }});
+                  this.$router.push({ path: '/SearchResult', query: { search: `${searchkeyword}` }});
                 })
                 .catch(error => console.error(error.message))
     },

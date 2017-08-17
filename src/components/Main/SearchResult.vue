@@ -53,7 +53,7 @@ div
         .column.is-10.is-offset-1
           .box.fetched-data
             article.media.fetched-data-item(v-for = "group in group_list")
-              a(href)  
+            a(href)  
                 .media-left
                   figure.image.is-64x64
                     img(:src='group.profile_img', alt='Image')
@@ -142,27 +142,12 @@ export default {
       this.$refs.mobile_my_menu.visible = true;
     },
     fetch(){
-      // bus.$on('call-child', (payload)=>{
-      //   this.payload = payload;
-      //   })
       let search = this.search.trim();
-      window.localStorage.setItem('searchKeyword',search)
-      let searchkeyword = window.localStorage.getItem('searchKeyword');
-      this.$http.get('http://bond.ap-northeast-2.elasticbeanstalk.com/api/'+'group/?search='+`${searchkeyword}`)
+      this.$http.get('http://bond.ap-northeast-2.elasticbeanstalk.com/api/'+'group/?search='+`${search}`)
                 .then(response => {
                   this.group_list = response.data.results;
-                  
-                  console.log('searchKeyword:',searchkeyword);
-                  // let data = response.data;
-                  // let name = data.name;
-                  // let description = data.description;
-                  // let profile_img = data.profile_img;
-                  // console.log(this.group_list)
-                  // this.$router.push('/SearchResult')
-                  console.log('response:',response);
-                  console.log('search:',search);
-                  this.$router.push({ path: '/SearchResult/group/', query: { search: `${search}` }});
-                  console.log('search:',search);
+                  console.log(search);
+                  this.$router.push({ path: '/SearchResult', query: { search: `${search}` }});
                 })
                 .catch(error => console.error(error.message))
     },
