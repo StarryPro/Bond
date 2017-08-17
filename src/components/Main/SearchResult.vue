@@ -147,8 +147,7 @@ export default {
                 .then(response => {
                   this.group_list = response.data.results;
                   console.log(this.group_list)
-                  this.$router.push('/SearchResult/?search='+`${search}`)
-
+                  this.$router.push('/SearchResult/group/?search='+`${search}`)
                 })
                 .catch(error => console.error(error.message))
     },
