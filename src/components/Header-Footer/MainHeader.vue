@@ -68,7 +68,7 @@ export default {
     getUserImg(){
       let user_token = window.localStorage.getItem('token');
       let pk = window.localStorage.getItem('pk');
-      this.$http.get('http://bond.ap-northeast-2.elasticbeanstalk.com/api/member/' + `${pk}` + '/',
+      this.$http.get('http://api.thekym.com/member/' + `${pk}` + '/',
       { headers: {'Authorization' : `Token ${user_token}`}})
                 .then(response => {
                   this.user = response.data;
@@ -81,7 +81,7 @@ export default {
                 .catch(error => console.log(error.response));
     },
     signOut(){
-      this.$http.post('http://bond.ap-northeast-2.elasticbeanstalk.com/api/member/logout/')
+      this.$http.post('http://api.thekym.com/member/logout/')
       .then(response => {
         let token = response.data.token;
         let pk = response.data.user;
@@ -113,7 +113,7 @@ export default {
       let search = this.search.trim();
       window.localStorage.setItem('searchKeyword',search)
       //해당 search를 포함하는 group를 확인한 후 해당 그룹 페이지로 이동하거나 alert창을 올려준다. 
-      this.$http.get('http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/?search='+`${search}`)
+      this.$http.get('http://api.thekym.com/group/?search='+`${search}`)
                 .then(response => {
                   if(response.data.count != 0)
                   this.$router.push({ path: '/SearchResult/group/', query: { search: `${search}` }});
@@ -122,6 +122,26 @@ export default {
                 })
                 .catch(error => console.error(error.message))
     },
+    //두번째 시도는 MainHeader에서 search를 눌렀을 때 MySearch가 아닌 다른 컴포넌를 불러왔다가 다시 MySearch 컴포넌트를 불러오는 것이다.
+    //이것이야말로 watch(?) 7.리다이렉트 라우팅 // 12.네비게이션 가드(main.js 건드려야함)
+    fetch(){
+        let search = this.search.trim();
+        this.$router.push({path: '/MainPage'})
+        window.localStorage.setItem('searchKeyword',search)
+        //해당 search를 포함하는 group를 확인한 후 해당 그룹 페이지로 이동하거나 alert창을 올려준다. 
+        this.$http.get('http://api.thekym.com/group/?search='+`${search}`)
+                  .then(response => {
+                    if(response.data.count != 0)
+                    this.$router.push({ path: '/SearchResult/group/', query: { search: `${search}` }});
+                    else
+                      alert("해당 검색어와 관련된 그룹이 없습니다.");
+                    //alert 다음에 아래 코드를 넣어보는 건 어떨까?
+                      this.$router.push({path: '/MainPage'})
+                  })
+                  .catch(error => console.error(error.message))
+    }, 
+    //세번째 시도는 기존에 search를 눌렀을 때는 localStorage에 search값이 저장되있는데 여기에 조건문을 넣어보는 것이다.
+
   }
 }
 </script>

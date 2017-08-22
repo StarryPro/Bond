@@ -45,7 +45,7 @@
 <script>
 import MakingGroupModal from '../Group/MakingGroupModal';
 // let group_list_url = 'https://bond-43bc3.firebaseio.com/group.json';
-// let group_list_url = 'http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/';
+// let group_list_url = 'http://api.thekym.com/group/';
 export default {
   components: {
     MakingGroupModal
@@ -83,7 +83,7 @@ export default {
       let path = null;
       let page_num = 1;
       if ( this.page_num.trim() === '' ) {
-        path = "http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/my-group/?page="+`${page_num}`
+        path = "http://api.thekym.com/group/my-group/?page="+`${page_num}`
       }
       else {
         path = this.pagination[direction];
@@ -106,7 +106,7 @@ export default {
         console.log(error.message);
       })
     },
-    // "http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/my-group/?page=2".slice(73)  => "2"
+    // "http://api.thekym.com/group/my-group/?page=2".slice(73)  => "2"
     nextPage(){
       let api_path = this.pagination.next;
       if (api_path !== null) {
@@ -136,14 +136,14 @@ export default {
     },    
     goGroup(pk, e){
       // this.$router.push({ path: 'JointGroup', query: { plan: 'private' }});
-      // http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/my-group/?group=1
-      // let group_pk = 'http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/' + `${pk}`;
+      // http://api.thekym.com/group/my-group/?group=1
+      // let group_pk = 'http://api.thekym.com/group/' + `${pk}`;
       // this.$router.push('/JointGroup/?group=${}');
       // this.$router.push({path: '/JointGroup', params: {id: pk}});
       this.$router.push({ path: '/JointGroup/'});
       // this.$router.push({ path: '/JointGroup/', query: { group: `${pk}` }});
       window.localStorage.setItem('this_group',pk);
-      // this.$http.get('http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/')
+      // this.$http.get('http://api.thekym.com/group/')
       console.log(pk);
     }
 }}

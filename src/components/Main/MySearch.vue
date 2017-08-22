@@ -68,12 +68,8 @@ export default {
       let user_token = window.localStorage.getItem('token');
       if ( this.page_num.trim() === '') {
         search = window.localStorage.getItem('searchKeyword');
-        path = 'http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/?search='+`${search}`;
+        path = 'http://api.thekym.com/group/?search='+`${search}`;
       }
-      // else if(this.page_num.trim()=== '' && search !== null){
-      //   search = window.localStorage.getItem('searchKeyword');
-      //   path = 'http://bond.ap-northeast-2.elasticbeanstalk.com/api/group/?search='+`${search}`;
-      // }
       else{
         path = this.pagination[direction]; 
         search = this.page_num.trim();
@@ -86,13 +82,42 @@ export default {
             this.group_list = data.results;
             this.pagination.next = data.next;
             this.pagination.prev = data.previous;
-            for(let i=0;i <response.data.results.length;i++){
+            for(let i=0; i <response.data.results.length;i++){
               this.is_member.push(data.results[i].is_member)
             }
             this.$router.push({ path: '/SearchResult/group/', query: { search: `${search}` }});
           })
           .catch(error => console.error(error.message));
     },
+    //08.22 내일 적용해 볼 코드
+    //첫번째 시도는 this.page_num.trim()에 대한 조건문을 변경해보았다.
+    fetched(direction){
+      let search = window.localStorage.getItem('searchKeyword');
+      let path = 'http://api.thekym.com/group/?search='+`${search}`;
+      let user_token = window.localStorage.getItem('token');
+      if(this.page_num.trim() !== ''){
+        //여기서 search는 꼭 필요한 건가?
+        search = this.page_num.trim();
+        path = this.pagination[direction];
+      }
+      this.$http
+            .get(path, { headers: {'Authorization' : `Token ${user_token}`}})
+            .then(response => {
+              console.log(response)
+              let data = response.data;
+              this.group_list = data.results;
+              this.pagination.next = data.next;
+              this.pagination.prev = data.previous;
+              //이건 무슨 코드지?
+              for(let i=0; i<response.data.results.length; i++){
+                this.is_member.push(data.results[i].is_member)
+              }
+              this.$router.push({path: '/SearchResult/group/', query: {search: `${search}`}});
+            })
+            .catch(error => console.error(error.message));
+    },
+      //두번째 시도는 MainHeader에서 search를 눌렀을 때 MySearch가 아닌 다른 컴포넌를 불러왔다가 다시 MySearch 컴포넌트를 불러오는 것이다.
+
     nextPage(){
       let api_path = this.pagination.next;
       if (api_path !== null) {

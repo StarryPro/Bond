@@ -40,7 +40,7 @@ export default {
   //   fetch(){
   //     let search = this.search.trim();
   //     let searchkeyword = window.localStorage.getItem('searchKeyword');
-  //     this.$http.get('http://bond.ap-northeast-2.elasticbeanstalk.com/api/'+'group/?search='+`${searchkeyword}`)
+  //     this.$http.get('http://api.thekym.com/'+'group/?search='+`${searchkeyword}`)
   //               .then(response => {
   //                 this.group_list = response.data.results;
                   
